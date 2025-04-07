@@ -1,6 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
+const helmet = require("helmet");
+const csrf = require("csurf");
 const bodyParser = require('body-parser');  
 const paperRoutes = require("./routes/paperRoutes");
 const branchRoutes = require("./routes/branchRoutes");
@@ -26,10 +29,13 @@ const app = express();
 app.use(bodyParser.json());
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Adjust origin as per frontend
 app.use(express.json());
 app.use(morgan("dev"));
-app.use("/upload", express.static("uploads")); // Serve uploaded images
+app.use("/upload", express.static("uploads"));
+app.use(cookieParser());
+app.use(helmet());
+app.use(csrf({ cookie: true })); // CSRF protection
 
 // Routes
 app.use("/api/papers", paperRoutes);
