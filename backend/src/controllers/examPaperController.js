@@ -1,4 +1,6 @@
 const ExamPaper = require("../models/ExamPaper");
+const path = require("path");
+const fs = require("fs");
 
 exports.getAllExamPapers = (req, res) => {
   console.log("Getting all admins");
@@ -43,5 +45,23 @@ exports.updateExamPaper = (req, res) => {
     if (err) return res.status(500).json({ error: err.message });
     if (!success) return res.status(404).json({ message: "ExamPaper not found or no changes made" });
     res.json({ message: "ExamPaper updated successfully" });
+  });
+};
+
+exports.downloadFile = (req, res) => {
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, "../uploads", filename);
+
+  // Check if file exists
+  fs.access(filePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      return res.status(404).json({ error: "File not found" });
+    }
+
+    res.download(filePath, filename, (err) => {
+      if (err) {
+        return res.status(500).json({ error: "Error downloading file" });
+      }
+    });
   });
 };

@@ -18,10 +18,10 @@ class ExamPaper {
   static create({ name, sub_id, year, month, semester, iscomplete, university, term }, callback) {
     db.query(
       "INSERT INTO exm_paper ( name, sub_id, year, month, semester, iscomplete, university, term) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-      [ name, sub_id, year, month, semester, iscomplete, university, term],
+      [ name, sub_id, year, month, semester, iscomplete, university, term], 
       (err, results) => {
         if (err) return callback(err, null);
-        callback(null, { id: results.insertId, userid, password, warning_cnt });
+        callback(null, { id: results.insertId, name, sub_id, year, month, semester, iscomplete, university, term});
       }
     );
   }

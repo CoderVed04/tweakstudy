@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const csrf = require("csurf");
+const path = require("path");
 const bodyParser = require('body-parser');  
 const paperRoutes = require("./routes/paperRoutes");
 const branchRoutes = require("./routes/branchRoutes");
@@ -22,6 +23,7 @@ const examPaperAnswerRoutes = require("./routes/examPaperAnswerRoutes");
 const examPaperRoutes = require("./routes/examPaperRoutes");
 const faqRoutes = require("./routes/faqRoutes");
 const authRoutes = require("./routes/authRoutes");
+const userCommentRoutes = require("./routes/userCommentRoutes");
 
 const app = express();
 
@@ -32,7 +34,7 @@ app.use(bodyParser.json());
 app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Adjust origin as per frontend
 app.use(express.json());
 app.use(morgan("dev"));
-app.use("/upload", express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(cookieParser());
 app.use(helmet());
 app.use(csrf({ cookie: true })); // CSRF protection
@@ -55,5 +57,6 @@ app.use("/api/examanswer", examPaperAnswerRoutes);
 app.use("/api/exampaper", examPaperRoutes);
 app.use("/api/faq", faqRoutes);
 app.use("/auth", authRoutes);
+app.use("/api/usercomment", userCommentRoutes);
 
 module.exports = app;
