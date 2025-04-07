@@ -24,6 +24,7 @@ const examPaperRoutes = require("./routes/examPaperRoutes");
 const faqRoutes = require("./routes/faqRoutes");
 const authRoutes = require("./routes/authRoutes");
 const userCommentRoutes = require("./routes/userCommentRoutes");
+const userAnswerRoutes = require("./routes/userAnswerRoutes");
 
 const app = express();
 
@@ -58,5 +59,6 @@ app.use("/api/exampaper", examPaperRoutes);
 app.use("/api/faq", faqRoutes);
 app.use("/auth", authRoutes);
 app.use("/api/usercomment", userCommentRoutes);
+app.use("/api/useranswer", userAnswerRoutes);
 
 module.exports = app;
