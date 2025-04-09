@@ -5,7 +5,7 @@ const csrf = require("csurf");
 require("dotenv").config();
 
 // CSRF Protection Middleware
-const csrfProtection = csrf({ cookie: true });
+// const csrfProtection = csrf({ cookie: true });
 
 // User Registration
 exports.register = (req, res) => {
@@ -57,9 +57,9 @@ exports.logout = (req, res) => {
 };
 
 // Protected Route Example
-exports.protectedRoute = (req, res) => {
-  res.json({ message: "This is a protected route!", user: req.user });
-};
+// exports.protectedRoute = (req, res) => {
+//   res.json({ message: "This is a protected route!", user: req.user });
+// };
 
 // Middleware to verify JWT token
 exports.authenticateToken = (req, res, next) => {
@@ -74,6 +74,6 @@ exports.authenticateToken = (req, res, next) => {
 };
 
 // Get CSRF Token
-exports.getCSRFToken = (req, res) => {
-  res.json({ csrfToken: req.csrfToken() })
-};
+// exports.getCSRFToken = (req, res) => {
+//   res.json({ csrfToken: req.csrfToken() })
+// };

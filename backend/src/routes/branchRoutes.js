@@ -1,12 +1,13 @@
 const express = require("express");
 const { getAllBranchs, getBranchById, addBranch, deleteBranch, updateBranch } = require("../controllers/branchController");
+const { authenticateToken } = require("../controllers/authController");
 
 const router = express.Router();
 
-router.get("/", getAllBranchs);
-router.get("/:id", getBranchById);
-router.post("/", addBranch);
-router.delete("/:id", deleteBranch);
-router.put("/:id", updateBranch);
+router.get("/", authenticateToken, getAllBranchs);
+router.get("/:id", authenticateToken, getBranchById);
+router.post("/", authenticateToken, addBranch);
+router.delete("/:id", authenticateToken, deleteBranch);
+router.put("/:id", authenticateToken, updateBranch);
 
 module.exports = router;

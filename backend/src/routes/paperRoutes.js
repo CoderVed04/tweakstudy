@@ -1,5 +1,6 @@
 const express = require("express");
 const { getAllPapers, getPaperById, addPaper, deletePaper } = require("../controllers/paperController");
+const { authenticateToken } = require("../controllers/authController");
 
 const router = express.Router();
 

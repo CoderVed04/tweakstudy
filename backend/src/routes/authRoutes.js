@@ -20,12 +20,12 @@ router.post("/register", upload.single("image"), authController.register);
 router.post("/login", authController.login);
 
 // CSRF Token Route
-router.get("/csrf-token", authController.getCSRFToken);
+// router.get("/csrf-token", authController.getCSRFToken);
 
 // Logout Route
 router.post("/logout", authController.logout);
 
 // Protected Route
-router.get("/protected", authController.authenticateToken, authController.protectedRoute);
+// router.get("/protected", authController.authenticateToken, authController.protectedRoute);
 
 module.exports = router;

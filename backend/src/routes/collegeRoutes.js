@@ -1,12 +1,13 @@
 const express = require("express");
 const { getAllColleges, getCollegeById, addCollege, deleteCollege, updateCollege } = require("../controllers/collegeController");
+const { authenticateToken } = require("../controllers/authController");
 
 const router = express.Router();
 
-router.get("/", getAllColleges);
-router.get("/:id", getCollegeById);
-router.post("/", addCollege);
-router.delete("/:id", deleteCollege);
-router.put("/:id", updateCollege);
+router.get("/", authenticateToken, getAllColleges);
+router.get("/:id", authenticateToken, getCollegeById);
+router.post("/", authenticateToken, addCollege);
+router.delete("/:id", authenticateToken,deleteCollege);
+router.put("/:id", authenticateToken, updateCollege);
 
 module.exports = router;
