@@ -4,7 +4,7 @@ const { authenticateToken } = require("../controllers/authController");
 
 const router = express.Router();
 
-router.get("/", authenticateToken, getAllBranchs);
+router.get("/", getAllBranchs);
 router.get("/:id", authenticateToken, getBranchById);
 router.post("/", authenticateToken, addBranch);
 router.delete("/:id", authenticateToken, deleteBranch);

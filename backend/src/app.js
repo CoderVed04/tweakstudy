@@ -42,6 +42,7 @@ const userCommentRoutes = require("./routes/userCommentRoutes");
 const userCommentAdminRoutes = require("./routes/userCommentAdminRoutes");
 const userAnswerRoutes = require("./routes/userAnswerRoutes");
 const userAnswerAdminRoutes = require("./routes/userAnswerAdminRoutes");
+const topicRoutes = require("./routes/topicRoutes");
 
 const app = express();
 
@@ -49,7 +50,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Middleware
-app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Adjust origin as per frontend
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -94,5 +95,7 @@ app.use("/api/usercomment", userCommentRoutes);
 app.use("/api/admin/usercomment", userCommentAdminRoutes);
 app.use("/api/useranswer", userAnswerRoutes);
 app.use("/api/admin/useranswer", userAnswerAdminRoutes);
+app.use("/api/topic", topicRoutes);
+app.use("/api/admin/topic", topicRoutes);
 
 module.exports = app;
