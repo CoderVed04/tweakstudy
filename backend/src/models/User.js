@@ -19,11 +19,39 @@ class User {
     });
   }
 
-  static findByUsername(userid, callback) {
-    db.query("SELECT * FROM reg WHERE userid = ?", [userid], (err, results) => {
+  static findByUsername(id, callback) {
+    db.query("SELECT * FROM reg WHERE id = ?", [id], (err, results) => {
       if (err) return callback(err, null);
       callback(null, results[0]);
     });
+  }
+
+  static getAll(callback) {
+    db.query("SELECT * FROM reg", (err, results) => {
+      if (err) return callback(err, null);
+      callback(null, results);
+    });
+  }
+
+  static deleteById(id, callback) {
+    db.query("DELETE FROM reg WHERE id = ?", [id], (err, results) => {
+      if (err) return callback(err, null);
+      callback(null, results.affectedRows > 0);
+    });
+  }
+
+  static updateById(id, { fname, lname, dob, email, clg_name, contact_no, userid, password, gender, image }, callback) {
+    bcrypt.hash(password, 10, (err, hashedPassword) => {
+      if (err) return callback(err, null);
+    db.query(
+      "UPDATE reg SET fname = ?, lname = ?, dob = ?, email = ?, clg_name = ?, contact_no = ?, userid = ?, password = ?, gender = ?, image = ? WHERE id = ?",
+      [fname, lname, dob, email, clg_name, contact_no, userid, hashedPassword, gender, image, id],
+      (err, results) => {
+        if (err) return callback(err, null);
+        callback(null, results.affectedRows > 0);
+      }
+    );
+  });
   }
 }
 

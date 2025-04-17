@@ -43,6 +43,7 @@ const userCommentAdminRoutes = require("./routes/userCommentAdminRoutes");
 const userAnswerRoutes = require("./routes/userAnswerRoutes");
 const userAnswerAdminRoutes = require("./routes/userAnswerAdminRoutes");
 const topicRoutes = require("./routes/topicRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
@@ -76,7 +77,7 @@ app.use("/api/semester", semesterRoutes);
 app.use("/api/admin/semester", semesterAdminRoutes);
 app.use("/api/university", universityRoutes);
 app.use("/api/admin/university", universityAdminRoutes);
-app.use("/api/admin", adminRoutes);
+app.use("/api/adminInfo", adminRoutes);
 app.use("/api/notification", notificationRoutes);
 app.use("/api/admin/notification", notificationAdminRoutes);
 app.use("/api/notificationall", notificationallRoutes);
@@ -97,5 +98,6 @@ app.use("/api/useranswer", userAnswerRoutes);
 app.use("/api/admin/useranswer", userAnswerAdminRoutes);
 app.use("/api/topic", topicRoutes);
 app.use("/api/admin/topic", topicRoutes);
+app.use("/api/admin/user", userRoutes);
 
 module.exports = app;
