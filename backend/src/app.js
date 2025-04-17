@@ -44,6 +44,7 @@ const userAnswerRoutes = require("./routes/userAnswerRoutes");
 const userAnswerAdminRoutes = require("./routes/userAnswerAdminRoutes");
 const topicRoutes = require("./routes/topicRoutes");
 const userRoutes = require("./routes/userRoutes");
+const uploadPaperRoutes = require("./routes/uploadPaperRoutes")
 
 const app = express();
 
@@ -99,5 +100,6 @@ app.use("/api/admin/useranswer", userAnswerAdminRoutes);
 app.use("/api/topic", topicRoutes);
 app.use("/api/admin/topic", topicRoutes);
 app.use("/api/admin/user", userRoutes);
+app.use("/api/uploadpaper", uploadPaperRoutes);
 
 module.exports = app;
