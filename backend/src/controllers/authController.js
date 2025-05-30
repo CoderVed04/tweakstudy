@@ -34,6 +34,8 @@ exports.login = (req, res) => {
   const { userid, password } = req.body;
 
   User.findByUsername(userid, (err, user) => {
+      console.log("Searching for user:", userid);
+  console.log("Found user:", user);
     if (err) return res.status(500).json({ error: err.message });
     if (!user) return res.status(404).json({ message: "User not found" });
 

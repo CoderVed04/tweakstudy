@@ -19,8 +19,8 @@ class User {
     });
   }
 
-  static findByUsername(id, callback) {
-    db.query("SELECT * FROM reg WHERE id = ?", [id], (err, results) => {
+  static findByUsername(userid, callback) {
+    db.query("SELECT * FROM reg WHERE userid = ?", [userid], (err, results) => {
       if (err) return callback(err, null);
       callback(null, results[0]);
     });
